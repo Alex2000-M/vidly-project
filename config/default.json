@@ -1,4 +1,3 @@
 {
-    "jwtPrivateKey": "1234",
-    "db": "mongodb+srv://alexm:kl4Gm6uVT4sZrmmI@cluster0.tj3gquf.mongodb.net/test"
+    "jwtPrivateKey": "1234"
 }
