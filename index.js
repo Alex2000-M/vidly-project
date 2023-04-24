@@ -6,7 +6,7 @@ const client = redis.createClient();
 const { Genre } = require('./models/genre');
 
 (async () => {
-    await client.connect();
+    await client.connect({url: 'redis://redis:6379'});
 })();
 
 app.get('/', async (req, res) => {
