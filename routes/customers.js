@@ -4,25 +4,25 @@ const admin = require('../middlewares/admin');
 const validate = require('../middlewares/validate');
 const express = require('express');
 const router = express.Router();
-const Redis = require('redis');
-const client = Redis.createClient();
-(async () => {
-    await client.connect();
-})()
+// const Redis = require('redis');
+// const client = Redis.createClient();
+// (async () => {
+//     await client.connect();
+// })()
 
-router.get('/', async (req, res) => {
-    const value = await client.get('customer');
-    if (value !== null) {
-        console.log('Cache Hit!');
-        return res.send(JSON.parse(value))
-    }
-    else {
-        const customers = await Customer.find().sort('name');
-        await client.setEx('customer', 3600, JSON.stringify(customers))
-        console.log('Cache Miss!')
-        return res.send(customers)
-    }
-});
+// router.get('/', async (req, res) => {
+//     const value = await client.get('customer');
+//     if (value !== null) {
+//         console.log('Cache Hit!');
+//         return res.send(JSON.parse(value))
+//     }
+//     else {
+//         const customers = await Customer.find().sort('name');
+//         await client.setEx('customer', 3600, JSON.stringify(customers))
+//         console.log('Cache Miss!')
+//         return res.send(customers)
+//     }
+// });
 
 router.post('/', validate(validateCustomer), async(req, res) => {
     const customer = new Customer({
